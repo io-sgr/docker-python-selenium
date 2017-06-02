@@ -8,7 +8,7 @@ ADD files/xvfb_init /etc/init.d/xvfb_init
 ADD files/xvfb-daemon-run /usr/bin/xvfb-daemon-run
 
 ENV CHROME_VERSION "google-chrome-stable"
-ENV CHROME_DRIVER_VERSION "2.28"
+ENV CHROME_DRIVER_VERSION "2.29"
 
 RUN \
 	apt-get update && \
