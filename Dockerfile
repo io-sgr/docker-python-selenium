@@ -1,14 +1,13 @@
 FROM sgrio/ubuntu-python:3
 MAINTAINER SgrAlpha <admin@mail.sgr.io>
 
-ENV DEBIAN_FRONTEND noninteractive
-ENV LANG C.UTF-8
+ENV DEBIAN_FRONTEND=noninteractive \
+    LANG=C.UTF-8 \
+    CHROME_VERSION="google-chrome-stable" \
+    CHROME_DRIVER_VERSION="2.39"
 
 ADD files/xvfb_init /etc/init.d/xvfb_init
 ADD files/xvfb-daemon-run /usr/bin/xvfb-daemon-run
-
-ENV CHROME_VERSION "google-chrome-stable"
-ENV CHROME_DRIVER_VERSION "2.33"
 
 RUN \
 	apt-get update && \
