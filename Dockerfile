@@ -9,18 +9,20 @@ ADD files/xvfb-daemon-run /usr/bin/xvfb-daemon-run
 
 RUN \
     CHROME_VERSION="google-chrome-stable" && \
-    CHROME_DRIVER_VERSION="2.39" && \
+    CHROME_DRIVER_VERSION="2.43" && \
     apt-get update && \
     apt-get dist-upgrade -y && \
     apt-get install \
+        gnupg2 \
         unzip \
         xvfb \
         --no-install-recommends -y && \
-    apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 1397BC53640DB551 && \
+    curl -sS -o - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add && \
     echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list && \
     apt-get update && apt-get install ${CHROME_VERSION} -y && \
     apt-get autoclean && apt-get autoremove --purge -y && \
     chmod a+x /etc/init.d/xvfb_init /usr/bin/xvfb-daemon-run && \
+    pip install --upgrade pip && \
     pip install pyvirtualdisplay selenium && \
     curl --silent https://chromedriver.storage.googleapis.com/${CHROME_DRIVER_VERSION}/chromedriver_linux64.zip -o /tmp/chromedriver_linux64.zip && \
     unzip /tmp/chromedriver_linux64.zip -d /usr/local/share/ && \
