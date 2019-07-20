@@ -9,7 +9,7 @@ ADD files/xvfb-daemon-run /usr/bin/xvfb-daemon-run
 
 RUN \
     CHROME_VERSION="google-chrome-stable" && \
-    CHROME_DRIVER_VERSION="2.43" && \
+    CHROME_DRIVER_VERSION="75.0.3770.140" && \
     apt-get update && \
     apt-get dist-upgrade -y && \
     apt-get install \
